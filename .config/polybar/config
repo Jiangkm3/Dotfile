@@ -1,0 +1,345 @@
+#-----------------------------------------------------------------------------#
+#----------------------------- Global settings -------------------------------#
+#-----------------------------------------------------------------------------#
+
+#---------------------------------- Colors -----------------------------------#
+[colors]
+base04  = #002c2d2f
+base03  = #8a2c2d2f
+base02  = #073642
+base01  = #586e75
+base00  = #657b83
+base0   = #839496
+base1   = #eee
+base2   = #ccc
+base3   = #fdf6e3
+yellow  = #b58900
+orange  = #ff6611
+orange2 = #ff6611
+red     = #dc322f
+pink    = #bf616a
+magenta = #d33682
+violet  = #6c71c4
+blue    = #00bfff
+cyan    = #2aa198
+green   = #859923
+none    = #00000000
+background = ${colors.base03}
+border = ${colors.base02}
+background_transparent = #c4002b36
+blue_transparent = #c4268bd2
+background-alt = ${colors.base02}
+foreground = ${colors.base1}
+foreground-alt = ${colors.base0}
+primary = ${colors.orange}
+secondary = ${colors.green}
+alert = ${colors.red}
+
+#--------------------------------- Geometry ----------------------------------#
+[global/wm]
+margin-top = 0
+margin-bottom = 0
+
+
+[section/base]
+#monitor = ${env:MONITOR:eDP1}
+enable-ipc = true
+override-redirect = true
+bottom = false
+
+height = 340
+offset-y = -400
+fixed-center = true
+#radius-bottom = 30
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+border-bottom-color = ${colors.border}
+border-left-color   = ${colors.border}
+border-right-color  = ${colors.border}
+border-bottom-size = 0
+border-left-size = 0
+border-right-size = 0
+
+overline-size = 300
+overline-color = ${colors.background}
+
+spacing = 1
+padding-left = 0
+padding-right = 0
+module-margin-left = 2
+module-margin-right = 2
+
+# Fonts
+# Very large offset to move the text to the bottom of the bar
+#font-0 = "Georgia:pixelsize=13;153"
+font-0 = "Ubuntu Nerd Font:pixelsize=13;153"
+font-1 = "DejaVu Sans:pixelsize=13;153"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;153"
+font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=13;153"
+font-4 = "Font Awesome 5 Brands:pixelsize=13;153"
+
+
+[bar/full]
+#monitor = ${env:MONITOR:eDP1}
+enable-ipc = true
+override-redirect = false
+bottom = false
+
+height = 40
+width = 100%
+offset-y = 0
+fixed-center = true
+spacing = 1
+module-margin-left = 2
+module-margin-right = 2
+
+background = ${colors.base04}
+foreground = ${colors.foreground}
+
+#font-0 = "Georgia:pixelsize=13;3"
+font-0 = "Ubuntu Nerd Font:pixelsize=13;3"
+font-1 = "DejaVu Sans:pixelsize=13;3"
+font-2 = "Font Awesome 5 Free:style=Solid:pixelsize=13;3"
+font-3 = "Font Awesome 5 Free:style=Regular:pixelsize=13;3"
+font-4 = "Font Awesome 5 Brands:pixelsize=13;3"
+
+#tray-position = left
+#tray-padding = 2
+#tray-transparent = false
+
+modules-left = i3 expand
+modules-center = apps xwindow
+modules-right = redshift wlan volume ibus battery date options_open
+padding-left = 1
+padding-right = 3
+
+
+#-----------------------------------------------------------------------------#
+#--------------------------------- Left bar ----------------------------------#
+#-----------------------------------------------------------------------------#
+
+[bar/left]
+inherit = section/base
+width = 35%
+offset-x = -22
+padding-left = 6
+modules-left = i3 retract
+radius-bottom = 15
+#tray-position = left
+#tray-padding = 2
+#tray-transparent = false
+
+
+#------------------------------- Left modules --------------------------------#
+
+[module/i3]
+type = internal/i3
+format = <label-state> <label-mode>
+
+strip-wsnumbers = true
+
+label-focused = %icon%
+label-focused-foreground = ${colors.primary}
+#label-focused-foreground = ${colors.base03}
+label-focused-underline  = ${colors.base04}
+label-focused-overline  = ${colors.base04}
+label-focused-padding = 3
+
+label-unfocused = %icon%
+label-unfocused-padding = 3
+
+label-occupied = %icon%
+label-occupied-padding = 3
+
+label-urgent = %icon%
+label-urgent-background = ${colors.alert}
+label-urgent-overline  = ${colors.background}
+label-urgent-padding = 3
+
+label-empty = %icon%
+label-empty-foreground = ${colors.foreground-alt}
+label-empty-padding = 3
+
+index-sort = true
+wrapping-scroll = true
+fuzzy-match = true
+
+ws-icon-0 = web;
+ws-icon-1 = term;
+ws-icon-2 = chat;
+ws-icon-3 = word;
+ws-icon-4 = music;
+ws-icon-5 = mail;
+ws-icon-6 = pdf;
+ws-icon-7 = art;
+ws-icon-8 = steam;
+;ws-icon-default = 
+
+pin-workspaces = true
+
+label-mode-padding = 2
+label-mode-foreground = #000
+label-mode-background = ${colors.primary}
+
+label-visible = %icon%
+label-visible-underline = ${self.label-focused-underline}
+label-visible-padding = ${self.label-focused-padding}
+
+[module/expand]
+type = custom/text
+content = ""
+click-left = polybar_search
+
+
+[module/song]
+type = custom/script
+format-foreground = ${colors.magenta}
+exec = ~/.config/polybar/player-mpris-tail.py
+tail = true
+click-middle = ~/.config/polybar/player-ctrl.sh previous
+click-right = ~/.config/polybar/player-ctrl.sh next
+click-left = ~/.config/polybar/player-ctrl.sh play-pause
+#format-underline = ${colors.orange}
+
+#-----------------------------------------------------------------------------#
+#-------------------------------- Center bar ---------------------------------#
+#-----------------------------------------------------------------------------#
+
+[bar/center]
+inherit = section/base
+width = 22%
+offset-x = 39%
+modules-center = retract xwindow
+radius-bottom = 15
+
+#------------------------------ Center modules -------------------------------#
+
+[module/xwindow]
+type = internal/xwindow
+label = %{T2}%title:0:38:...%%{T-}
+
+[module/apps]
+type = custom/text
+content = ""
+click-left = polybar_rofi
+
+[module/retract]
+type = custom/text
+content = ""
+
+#-----------------------------------------------------------------------------#
+#-------------------------------- Right bar ----------------------------------#
+#-----------------------------------------------------------------------------#
+
+[bar/right]
+inherit = section/base
+padding-right = 6
+width = 10%
+offset-x = 1741
+modules-right = date options_close
+radius-bottom = 15
+
+#-----------------------------=- Right modules -------------------------------#
+
+[module/redshift]
+type = custom/text
+format-foreground = ${colors.foreground}
+content = ""
+click-left = ~/.config/polybar/redon.sh
+click-right = ~/.config/polybar/redoff.sh
+
+[module/ibus]
+type = custom/script
+format-foreground = ${colors.foreground}
+exec = ~/.config/polybar/ibus_show.sh
+interval = 0.5
+click-left = ~/.config/polybar/ibus_switch.sh
+format-padding = 1
+
+[module/wlan]
+type = custom/script
+format-foreground = ${colors.foreground}
+interval = 1
+exec = ~/.config/polybar/netinfo.sh
+click-left = rofi-wifi-menu
+click-right = ~/.config/polybar/nm-wifi-toggle
+
+[module/options_open]
+type = custom/text
+content-foreground = ${colors.foreground}
+content = ""
+click-left = ~/.config/polybar/polybar_wrapper options
+
+[module/options_close]
+type = custom/text
+content-foreground = ${colors.blue}
+content = ""
+click-left = ~/.config/polybar/polybar_wrapper options
+
+
+[module/date]
+type = internal/date
+interval = 5
+format-prefix ="   "
+format-prefix-foreground = ${colors.primary}
+format-foreground = ${colors.primary}
+date = "%m/%d"
+time = %H:%M
+label = %time%  %date%
+
+[module/volume]
+type = internal/pulseaudio
+format-volume-foreground =${colors.foreground}
+label-muted-foreground = ${colors.base2}
+format-volume =  
+sink = alsa_output.pci-0000_00_1b.0.analog-stereo
+label-muted = " "
+bar-volume-width = 10
+bar-volume-indicator = |
+bar-volume-fill = ─
+bar-volume-empty = ─
+
+
+[module/backlight]
+type = internal/xbacklight
+format-prefix = "  "
+format = <bar>
+bar-width = 10
+bar-indicator = |
+bar-fill = ─
+bar-empty = ─
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = AC0
+full-at = 99
+
+label-charging-foreground = ${colors.cyan}
+label-discharging-foreground = ${colors.foreground}
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <ramp-capacity> <label-discharging>
+format-full-prefix = " "
+#format-full-prefix-foreground = ${colors.yellow}
+format-full-foreground = ${colors.foreground}
+
+ramp-capacity-0 = 
+ramp-capacity-1 = 
+ramp-capacity-2 = 
+ramp-capacity-3 = 
+ramp-capacity-4 = 
+ramp-capacity-foreground = ${colors.foreground}
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = ${colors.cyan}
+animation-charging-framerate = 750
+#format-charging-padding = 7
+#format-discharging-padding = 7
+
