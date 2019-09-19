@@ -1,0 +1,70 @@
+Xcursor.theme: capitaine-cursors
+Xft.dpi: 100
+
+[colors]
+#*.foreground:   #eee
+#*.background:   #1d2325
+#*.cursorColor:  #c0c0c0
+#*.color0:       #2c2d2f
+#*.color8:       #373b41
+#*.color1:       #dc322f
+#*.color9:       #cc6666
+#*.color2:       #859900
+#*.color10:      #b5db68
+#*.color3:       #cb4d16
+#*.color11:      #f0c674
+#*.color4:       #268bd2
+#*.color12:      #6197c4
+#*.color5:       #6c71c4
+#*.color13:      #b294bb
+#*.color6:       #2aa198
+#*.color14:      #8abeb7
+#*.color7:       #b7c5d2
+#*.color15:      #c5c8c6
+
+#define solarized_base03  #002b36
+#define solarized_base02  #073642
+#define solarized_base01  #586e75
+#define solarized_base00  #657b83
+#define solarized_base0   #839496
+#define solarized_base1   #93a1a1
+#define solarized_base2   #eee8d5
+#define solarized_base3   #fdf6e3
+#define solarized_yellow  #b58900
+#define solarized_orange  #cb4b16
+#define solarized_red     #dc322f
+#define solarized_magenta #d33682
+#define solarized_violet  #6c71c4
+#define solarized_blue    #268bd2
+#define solarized_cyan    #2aa198
+#define solarized_green   #859900
+
+#define BG_DARK   solarized_base03
+#define BG_ALT    solarized_base01
+#define BG_LIGHT  solarized_base2
+#define TXT_DARK  solarized_base03
+#define TXT_LIGHT solarized_base1
+#define PRIMARY   solarized_blue
+#define SECONDARY solarized_green
+#define URGENT    solarized_red
+
+#define TRANSPARENT argb:00000000
+
+
+*background    : BG_DARK
+*background_alt: BG_ALT
+*foreground    : TXT_LIGHT
+*primary       : PRIMARY
+*secondary     : SECONDARY
+*urgent        : URGENT
+ 
+! vim: set ft=xdefaults:
+
+! Rofi Configuration
+rofi.color-enabled: true
+rofi.color-window: #002c2d2f, #002c2d2f, #002c2d2f
+rofi.color-normal: #002c2d2f, #eee, #002c2d2f, #002c2d2f, #cb4d16
+rofi.color-active: #002c2d2f, #b48ead, #002c2d2f, #002c2d2f, #93e5cc
+rofi.color-urgent: #002c2d2f, #eee, #002c2d2f, #002c2d2f, #eee
+
+rofi.font: Ubuntu Nerd Font 13
